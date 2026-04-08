@@ -13,7 +13,6 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet" />
   <style>
-    /* ─── Design Tokens ─── */
     :root {
       --bg: #0a0c10;
       --bg-card: #111520;
@@ -31,1204 +30,174 @@
       --radius: 12px;
       --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--fg);
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* ─── Ambient Orbs ─── */
-    .orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(120px);
-      pointer-events: none;
-      z-index: 0;
-      animation: float 12s ease-in-out infinite alternate;
-    }
-
-    .orb-1 {
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(197, 168, 112, 0.10) 0%, transparent 70%);
-      top: -160px;
-      right: -120px;
-    }
-
-    .orb-2 {
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(100, 120, 200, 0.07) 0%, transparent 70%);
-      bottom: 200px;
-      left: -100px;
-      animation-delay: -6s;
-    }
-
-    @keyframes float {
-      from {
-        transform: translateY(0) scale(1);
-      }
-
-      to {
-        transform: translateY(40px) scale(1.06);
-      }
-    }
-
-    /* ─── Nav ─── */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 20px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid transparent;
-      backdrop-filter: blur(0px);
-      transition: var(--transition);
-    }
-
-    nav.scrolled {
-      background: rgba(10, 12, 16, 0.85);
-      border-color: var(--border);
-      backdrop-filter: blur(18px);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      cursor: default;
-    }
-
-    .nav-logo-badge {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #c5a870, #d4b87e);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 3px 14px rgba(197, 168, 112, 0.3);
-      flex-shrink: 0;
-      transition: box-shadow 0.28s ease, transform 0.28s ease;
-    }
-
-    .nav-logo:hover .nav-logo-badge {
-      transform: scale(1.06);
-      box-shadow: 0 6px 22px rgba(197, 168, 112, 0.45);
-    }
-
-    .nav-logo-badge span {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: #0a0c10;
-      letter-spacing: 0.04em;
-    }
-
-    .nav-logo-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.2;
-    }
-
-    .nav-logo-text .line1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #f0ede6;
-    }
-
-    .nav-logo-text .line2 {
-      font-size: 0.63rem;
-      font-weight: 500;
-      color: #c5a870;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    .nav-cta {
-      background: var(--primary);
-      color: #0a0c10;
-      border: none;
-      padding: 10px 24px;
-      border-radius: 6px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: var(--transition);
-      letter-spacing: 0.02em;
-    }
-
-    .nav-cta:hover {
-      background: #d4b87e;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px var(--primary-glow);
-    }
-
-    /* ─── Layout wrapper ─── */
-    .wrapper {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ─── Section ─── */
-    section {
-      padding: 100px 40px;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .container-sm {
-      max-width: 780px;
-      margin: 0 auto;
-    }
-
-    .container-md {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    /* ─── Hero ─── */
-    #hero {
-      padding-top: 180px;
-      padding-bottom: 120px;
-      text-align: center;
-      position: relative;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--primary-dim);
-      border: 1px solid rgba(197, 168, 112, 0.25);
-      border-radius: 100px;
-      padding: 8px 20px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 36px;
-      animation: fadeUp 0.8s ease both;
-    }
-
-    .hero-badge::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: var(--primary);
-      border-radius: 50%;
-    }
-
-    .hero-accent-line {
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), #d4b87e);
-      margin: 0 auto 32px;
-      border-radius: 2px;
-      animation: fadeUp 0.8s 0.1s ease both;
-    }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 5vw, 4.2rem);
-      font-weight: 700;
-      line-height: 1.15;
-      color: var(--fg);
-      margin-bottom: 28px;
-      animation: fadeUp 0.8s 0.2s ease both;
-    }
-
-    h1 .accent {
-      color: var(--primary);
-    }
-
-    .hero-sub {
-      max-width: 640px;
-      margin: 0 auto 48px;
-      font-size: 1.125rem;
-      color: var(--fg-muted);
-      line-height: 1.75;
-      animation: fadeUp 0.8s 0.35s ease both;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-      animation: fadeUp 0.8s 0.5s ease both;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), #d4b87e);
-      color: #0a0c10;
-      padding: 16px 36px;
-      border: none;
-      border-radius: 8px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: var(--transition);
-      letter-spacing: 0.02em;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 40px var(--primary-glow);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--fg);
-      padding: 15px 36px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--border-hover);
-      color: var(--primary);
-      transform: translateY(-2px);
-    }
-
-    /* ─── Section Heading ─── */
-    .section-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--primary);
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      font-weight: 700;
-      color: var(--fg);
-      margin-bottom: 18px;
-    }
-
-    .line-accent {
-      width: 50px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), #d4b87e);
-      border-radius: 2px;
-      margin: 0 auto;
-    }
-
-    .line-accent.left {
-      margin: 0;
-    }
-
-    /* ─── Stats ─── */
-    #stats {
-      padding: 0 40px 80px;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 2px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
-
-    .stat-item {
-      background: var(--bg-card);
-      padding: 40px 32px;
-      text-align: center;
-    }
-
-    .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.8rem;
-      font-weight: 700;
-      color: var(--primary);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .stat-label {
-      font-size: 0.875rem;
-      color: var(--fg-muted);
-      font-weight: 400;
-    }
-
-    /* ─── Services ─── */
-    #servicios {
-      background: transparent;
-    }
-
-    #servicios .section-header {
-      text-align: center;
-      margin-bottom: 64px;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-
-    .service-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 36px 32px;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .service-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: var(--radius);
-      border: 1px solid var(--primary);
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .service-card:hover {
-      transform: translateY(-6px);
-      background: var(--bg-card-2);
-    }
-
-    .service-card:hover::after {
-      opacity: 0.4;
-    }
-
-    .service-icon {
-      width: 52px;
-      height: 52px;
-      background: var(--primary-dim);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 24px;
-      transition: var(--transition);
-    }
-
-    .service-card:hover .service-icon {
-      background: rgba(197, 168, 112, 0.2);
-    }
-
-    .service-icon svg {
-      width: 26px;
-      height: 26px;
-      stroke: var(--primary);
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .service-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--fg);
-      margin-bottom: 12px;
-    }
-
-    .service-card p {
-      font-size: 0.925rem;
-      color: var(--fg-muted);
-      line-height: 1.7;
-    }
-
-    /* ─── Experience ─── */
-    #experiencia {
-      background: transparent;
-    }
-
-    .exp-card {
-      background: var(--bg-card);
-      border: 1px solid rgba(197, 168, 112, 0.2);
-      border-radius: var(--radius);
-      padding: 64px 72px;
-      position: relative;
-    }
-
-    @media (max-width: 640px) {
-      .exp-card {
-        padding: 36px 28px;
-      }
-    }
-
-    .exp-card .quote-mark {
-      font-family: 'Playfair Display', serif;
-      font-size: 8rem;
-      line-height: 0.6;
-      color: var(--primary);
-      opacity: 0.15;
-      position: absolute;
-      top: 40px;
-      left: 48px;
-      user-select: none;
-    }
-
-
-    .exp-body p {
-      font-size: 1.05rem;
-      color: var(--fg-muted);
-      line-height: 1.85;
-      margin-bottom: 20px;
-    }
-
-    .exp-body p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* ─── Contact ─── */
-    #contacto {
-      background: transparent;
-    }
-
-    #contacto .section-header {
-      text-align: center;
-      margin-bottom: 52px;
-    }
-
-    #contacto .section-header p {
-      max-width: 520px;
-      margin: 20px auto 0;
-      color: var(--fg-muted);
-      font-size: 1.05rem;
-      line-height: 1.7;
-    }
-
-    .contact-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 52px 56px;
-    }
-
-    @media (max-width: 640px) {
-      .contact-card {
-        padding: 32px 24px;
-      }
-    }
-
-    .form-group {
-      margin-bottom: 24px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--fg);
-      margin-bottom: 8px;
-      letter-spacing: 0.02em;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 14px 18px;
-      color: var(--fg);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.975rem;
-      transition: var(--transition);
-      outline: none;
-    }
-
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-      color: rgba(138, 143, 158, 0.5);
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: var(--primary);
-      background: rgba(197, 168, 112, 0.05);
-      box-shadow: 0 0 0 3px rgba(197, 168, 112, 0.1);
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-
-    .required-asterisk {
-      color: #e87070;
-      margin-left: 3px;
-    }
-
-    .form-info {
-      font-size: 0.825rem;
-      color: var(--fg-muted);
-      margin-bottom: 20px;
-    }
-
-    .checkbox-group {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .checkbox-group input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      margin-top: 2px;
-      accent-color: var(--primary);
-      cursor: pointer;
-    }
-
-    .checkbox-group label {
-      font-size: 0.85rem;
-      color: var(--fg-muted);
-      line-height: 1.5;
-      cursor: pointer;
-      font-weight: 400;
-      margin-bottom: 0;
-      text-transform: none;
-      letter-spacing: normal;
-    }
-
-    .checkbox-group a {
-      color: var(--primary);
-      text-decoration: underline;
-      transition: var(--transition);
-    }
-
-    .checkbox-group a:hover {
-      color: #d4b87e;
-    }
-
-    .alert {
-      border-radius: 8px;
-      padding: 16px 20px;
-      font-size: 0.925rem;
-      margin-bottom: 24px;
-      display: none;
-    }
-
-    .alert.show {
-      display: block;
-    }
-
-    .alert-success {
-      background: var(--success-bg);
-      color: var(--primary);
-      border: 1px solid rgba(197, 168, 112, 0.25);
-    }
-
-    .alert-error {
-      background: var(--error-bg);
-      color: var(--error-fg);
-      border: 1px solid rgba(220, 80, 80, 0.2);
-    }
-
-    .btn-submit {
-      width: 100%;
-      background: linear-gradient(135deg, var(--primary), #d4b87e);
-      color: #0a0c10;
-      border: none;
-      padding: 18px;
-      border-radius: 8px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: var(--transition);
-      letter-spacing: 0.03em;
-    }
-
-    .btn-submit:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px var(--primary-glow);
-    }
-
-    .btn-submit:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    /* ─── Footer ─── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 52px 40px;
-      text-align: center;
-    }
-
-    footer p {
-      color: var(--fg-muted);
-      font-size: 0.875rem;
-      line-height: 1.7;
-    }
-
-    /* ─── FAQ ─── */
-    #faq {
-      background: transparent;
-    }
-
-    #faq .section-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-
-    .faq-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .faq-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      transition: border-color var(--transition);
-    }
-
-    .faq-item.open {
-      border-color: rgba(197, 168, 112, 0.35);
-    }
-
-    .faq-question {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      padding: 22px 28px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      text-align: left;
-      color: var(--fg);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.975rem;
-      font-weight: 600;
-      line-height: 1.5;
-      transition: color var(--transition);
-    }
-
-    .faq-item.open .faq-question {
-      color: var(--primary);
-    }
-
-    .faq-chevron {
-      flex-shrink: 0;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--primary-dim);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform var(--transition), background var(--transition);
-    }
-
-    .faq-item.open .faq-chevron {
-      transform: rotate(180deg);
-      background: rgba(197, 168, 112, 0.22);
-    }
-
-    .faq-chevron svg {
-      width: 14px;
-      height: 14px;
-      stroke: var(--primary);
-      fill: none;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .faq-answer-inner {
-      padding: 0 28px 22px;
-      font-size: 0.925rem;
-      color: var(--fg-muted);
-      line-height: 1.8;
-      border-top: 1px solid var(--border);
-      padding-top: 18px;
-    }
-
-    /* ─── Chatbot ─── */
-    #chat-fab {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      z-index: 500;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), #d4b87e);
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 32px rgba(197, 168, 112, 0.35);
-      transition: var(--transition);
-    }
-
-    #chat-fab:hover {
-      transform: scale(1.08);
-      box-shadow: 0 12px 40px rgba(197, 168, 112, 0.5);
-    }
-
-    #chat-fab svg {
-      width: 28px;
-      height: 28px;
-      stroke: #0a0c10;
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    #chat-fab .chat-badge {
-      position: absolute;
-      top: -4px;
-      right: -4px;
-      width: 18px;
-      height: 18px;
-      background: #e87070;
-      border-radius: 50%;
-      border: 2px solid var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.65rem;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    #chat-window {
-      position: fixed;
-      bottom: 100px;
-      right: 28px;
-      z-index: 499;
-      width: 370px;
-      max-height: 540px;
-      background: var(--bg-card);
-      border: 1px solid rgba(197, 168, 112, 0.25);
-      border-radius: 18px;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      transform: scale(0.9) translateY(20px);
-      transform-origin: bottom right;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    #chat-window.open {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-      pointer-events: all;
-    }
-
-    .chat-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 18px 20px;
-      background: linear-gradient(135deg, rgba(197, 168, 112, 0.12), rgba(197, 168, 112, 0.04));
-      border-bottom: 1px solid var(--border);
-      flex-shrink: 0;
-    }
-
-    .chat-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), #d4b87e);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .chat-avatar svg {
-      width: 20px;
-      height: 20px;
-      stroke: #0a0c10;
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .chat-header-info h4 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--fg);
-      line-height: 1.2;
-    }
-
-    .chat-header-info p {
-      font-size: 0.75rem;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .chat-header-info p::before {
-      content: '';
-      width: 7px;
-      height: 7px;
-      background: #4ade80;
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    .chat-close {
-      margin-left: auto;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--fg-muted);
-      font-size: 1.4rem;
-      line-height: 1;
-      transition: color var(--transition);
-    }
-
-    .chat-close:hover {
-      color: var(--fg);
-    }
-
-    .chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 18px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      scroll-behavior: smooth;
-    }
-
-    .chat-messages::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    .chat-messages::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .chat-messages::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 4px;
-    }
-
-    .chat-msg {
-      max-width: 86%;
-      padding: 12px 16px;
-      border-radius: 14px;
-      font-size: 0.875rem;
-      line-height: 1.6;
-      animation: msgIn 0.2s ease;
-    }
-
-    @keyframes msgIn {
-      from {
-        opacity: 0;
-        transform: translateY(6px);
-      }
-
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    .chat-msg.bot {
-      background: var(--bg-card-2);
-      border: 1px solid var(--border);
-      color: var(--fg);
-      border-radius: 4px 14px 14px 14px;
-      align-self: flex-start;
-    }
-
-    .chat-msg.user {
-      background: linear-gradient(135deg, var(--primary), #d4b87e);
-      color: #0a0c10;
-      font-weight: 500;
-      border-radius: 14px 4px 14px 14px;
-      align-self: flex-end;
-    }
-
-    .chat-suggestions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      padding: 0 16px 12px;
-      flex-shrink: 0;
-    }
-
-    .chat-suggestion {
-      background: var(--primary-dim);
-      border: 1px solid rgba(197, 168, 112, 0.2);
-      color: var(--primary);
-      padding: 6px 12px;
-      border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: var(--transition);
-      font-family: 'Inter', sans-serif;
-    }
-
-    .chat-suggestion:hover {
-      background: rgba(197, 168, 112, 0.22);
-      border-color: var(--primary);
-    }
-
-    .chat-input-row {
-      display: flex;
-      gap: 8px;
-      padding: 12px 16px;
-      border-top: 1px solid var(--border);
-      flex-shrink: 0;
-    }
-
-    #chat-input {
-      flex: 1;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 10px 14px;
-      color: var(--fg);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.875rem;
-      outline: none;
-      transition: border-color var(--transition);
-    }
-
-    #chat-input::placeholder {
-      color: rgba(138, 143, 158, 0.5);
-    }
-
-    #chat-input:focus {
-      border-color: var(--primary);
-    }
-
-    #chat-send {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--primary), #d4b87e);
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: var(--transition);
-    }
-
-    #chat-send:hover {
-      transform: scale(1.08);
-    }
-
-    #chat-send svg {
-      width: 18px;
-      height: 18px;
-      stroke: #0a0c10;
-      fill: none;
-      stroke-width: 2.2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .chat-typing {
-      display: flex;
-      gap: 4px;
-      padding: 10px 14px;
-      background: var(--bg-card-2);
-      border: 1px solid var(--border);
-      border-radius: 4px 14px 14px 14px;
-      width: fit-content;
-      align-self: flex-start;
-    }
-
-    .chat-typing span {
-      width: 6px;
-      height: 6px;
-      background: var(--fg-muted);
-      border-radius: 50%;
-      animation: typingDot 1.2s infinite;
-    }
-
-    .chat-typing span:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-    .chat-typing span:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-
-    @keyframes typingDot {
-
-      0%,
-      60%,
-      100% {
-        opacity: 0.2;
-        transform: none;
-      }
-
-      30% {
-        opacity: 1;
-        transform: translateY(-3px);
-      }
-    }
-
-    @media (max-width: 480px) {
-      #chat-window {
-        width: calc(100vw - 32px);
-        right: 16px;
-        bottom: 90px;
-      }
-    }
-
-    /* ─── Animations ─── */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(24px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-delay-1 {
-      transition-delay: 0.1s;
-    }
-
-    .reveal-delay-2 {
-      transition-delay: 0.2s;
-    }
-
-    .reveal-delay-3 {
-      transition-delay: 0.3s;
-    }
-
-    .reveal-delay-4 {
-      transition-delay: 0.4s;
-    }
-
-    .reveal-delay-5 {
-      transition-delay: 0.5s;
-    }
-
-    .reveal-delay-6 {
-      transition-delay: 0.6s;
-    }
-
-    /* ─── Scroll progress ─── */
-    #scroll-progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), #d4b87e);
-      z-index: 200;
-      width: 0%;
-      transition: width 0.1s linear;
-    }
-
-    /* ─── Responsive ─── */
-    @media (max-width: 768px) {
-      nav {
-        padding: 16px 24px;
-      }
-
-      section {
-        padding: 72px 24px;
-      }
-
-      #hero {
-        padding-top: 140px;
-        padding-bottom: 80px;
-      }
-
-      #stats {
-        padding: 0 24px 60px;
-      }
-    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{background:var(--bg);color:var(--fg);font-family:'Inter',sans-serif;line-height:1.6;min-height:100vh;overflow-x:hidden}
+    .orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;animation:float 12s ease-in-out infinite alternate}
+    .orb-1{width:500px;height:500px;background:radial-gradient(circle,rgba(197,168,112,0.10) 0%,transparent 70%);top:-160px;right:-120px}
+    .orb-2{width:400px;height:400px;background:radial-gradient(circle,rgba(100,120,200,0.07) 0%,transparent 70%);bottom:200px;left:-100px;animation-delay:-6s}
+    @keyframes float{from{transform:translateY(0) scale(1)}to{transform:translateY(40px) scale(1.06)}}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid transparent;backdrop-filter:blur(0px);transition:var(--transition)}
+    nav.scrolled{background:rgba(10,12,16,0.85);border-color:var(--border);backdrop-filter:blur(18px)}
+    .nav-logo{display:flex;align-items:center;gap:12px;cursor:default}
+    .nav-logo-badge{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#c5a870,#d4b87e);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 14px rgba(197,168,112,0.3);flex-shrink:0;transition:box-shadow 0.28s ease,transform 0.28s ease}
+    .nav-logo:hover .nav-logo-badge{transform:scale(1.06);box-shadow:0 6px 22px rgba(197,168,112,0.45)}
+    .nav-logo-badge span{font-family:'Playfair Display',serif;font-size:0.78rem;font-weight:700;color:#0a0c10;letter-spacing:0.04em}
+    .nav-logo-text{display:flex;flex-direction:column;line-height:1.2}
+    .nav-logo-text .line1{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:#f0ede6}
+    .nav-logo-text .line2{font-size:0.63rem;font-weight:500;color:#c5a870;text-transform:uppercase;letter-spacing:0.1em}
+    .nav-cta{background:var(--primary);color:#0a0c10;border:none;padding:10px 24px;border-radius:6px;font-family:'Inter',sans-serif;font-weight:600;font-size:0.9rem;cursor:pointer;transition:var(--transition);letter-spacing:0.02em}
+    .nav-cta:hover{background:#d4b87e;transform:translateY(-1px);box-shadow:0 8px 24px var(--primary-glow)}
+    .wrapper{position:relative;z-index:1}
+    section{padding:100px 40px}
+    .container{max-width:1100px;margin:0 auto}
+    .container-sm{max-width:780px;margin:0 auto}
+    .container-md{max-width:900px;margin:0 auto}
+
+    /* HERO with background image */
+    #hero{
+      padding-top:180px;padding-bottom:120px;text-align:center;position:relative;
+      background-image:url('https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=1600&q=80&fit=crop');
+      background-size:cover;background-position:center;background-attachment:fixed;
+    }
+    #hero::before{
+      content:'';position:absolute;inset:0;z-index:0;
+      background:linear-gradient(to bottom,rgba(10,12,16,0.82) 0%,rgba(10,12,16,0.70) 50%,rgba(10,12,16,0.92) 100%);
+    }
+    #hero > .container{position:relative;z-index:1}
+
+    .hero-badge{display:inline-flex;align-items:center;gap:10px;background:var(--primary-dim);border:1px solid rgba(197,168,112,0.25);border-radius:100px;padding:8px 20px;font-size:0.8rem;font-weight:500;color:var(--primary);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:36px;animation:fadeUp 0.8s ease both}
+    .hero-badge::before{content:'';width:6px;height:6px;background:var(--primary);border-radius:50%}
+    .hero-accent-line{width:60px;height:3px;background:linear-gradient(90deg,var(--primary),#d4b87e);margin:0 auto 32px;border-radius:2px;animation:fadeUp 0.8s 0.1s ease both}
+    h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4.2rem);font-weight:700;line-height:1.15;color:var(--fg);margin-bottom:28px;animation:fadeUp 0.8s 0.2s ease both}
+    h1 .accent{color:var(--primary)}
+    .hero-sub{max-width:640px;margin:0 auto 48px;font-size:1.125rem;color:var(--fg-muted);line-height:1.75;animation:fadeUp 0.8s 0.35s ease both}
+    .hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.8s 0.5s ease both}
+    .btn-primary{background:linear-gradient(135deg,var(--primary),#d4b87e);color:#0a0c10;padding:16px 36px;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:var(--transition);letter-spacing:0.02em}
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 40px var(--primary-glow)}
+    .btn-secondary{background:transparent;color:var(--fg);padding:15px 36px;border:1px solid var(--border);border-radius:8px;font-family:'Inter',sans-serif;font-weight:500;font-size:1rem;cursor:pointer;transition:var(--transition)}
+    .btn-secondary:hover{border-color:var(--border-hover);color:var(--primary);transform:translateY(-2px)}
+    .section-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--primary);font-weight:600;margin-bottom:12px}
+    .section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:700;color:var(--fg);margin-bottom:18px}
+    .line-accent{width:50px;height:3px;background:linear-gradient(90deg,var(--primary),#d4b87e);border-radius:2px;margin:0 auto}
+    .line-accent.left{margin:0}
+    #stats{padding:0 40px 80px}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+    .stat-item{background:var(--bg-card);padding:40px 32px;text-align:center}
+    .stat-num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;color:var(--primary);line-height:1;margin-bottom:8px}
+    .stat-label{font-size:0.875rem;color:var(--fg-muted);font-weight:400}
+    #servicios{background:transparent}
+    #servicios .section-header{text-align:center;margin-bottom:64px}
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+    .service-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:36px 32px;transition:var(--transition);position:relative;overflow:hidden}
+    .service-card::after{content:'';position:absolute;inset:0;border-radius:var(--radius);border:1px solid var(--primary);opacity:0;transition:var(--transition)}
+    .service-card:hover{transform:translateY(-6px);background:var(--bg-card-2)}
+    .service-card:hover::after{opacity:0.4}
+    .service-icon{width:52px;height:52px;background:var(--primary-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:var(--transition)}
+    .service-card:hover .service-icon{background:rgba(197,168,112,0.2)}
+    .service-icon svg{width:26px;height:26px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .service-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:var(--fg);margin-bottom:12px}
+    .service-card p{font-size:0.925rem;color:var(--fg-muted);line-height:1.7}
+    #experiencia{background:transparent}
+    .exp-card{background:var(--bg-card);border:1px solid rgba(197,168,112,0.2);border-radius:var(--radius);padding:64px 72px;position:relative}
+    @media(max-width:640px){.exp-card{padding:36px 28px}}
+    .exp-card .quote-mark{font-family:'Playfair Display',serif;font-size:8rem;line-height:0.6;color:var(--primary);opacity:0.15;position:absolute;top:40px;left:48px;user-select:none}
+    .exp-body p{font-size:1.05rem;color:var(--fg-muted);line-height:1.85;margin-bottom:20px}
+    .exp-body p:last-child{margin-bottom:0}
+    #contacto{background:transparent}
+    #contacto .section-header{text-align:center;margin-bottom:52px}
+    #contacto .section-header p{max-width:520px;margin:20px auto 0;color:var(--fg-muted);font-size:1.05rem;line-height:1.7}
+    .contact-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:52px 56px}
+    @media(max-width:640px){.contact-card{padding:32px 24px}}
+    .form-group{margin-bottom:24px}
+    .form-group label{display:block;font-size:0.875rem;font-weight:600;color:var(--fg);margin-bottom:8px;letter-spacing:0.02em}
+    .form-group input,.form-group textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:14px 18px;color:var(--fg);font-family:'Inter',sans-serif;font-size:0.975rem;transition:var(--transition);outline:none}
+    .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(138,143,158,0.5)}
+    .form-group input:focus,.form-group textarea:focus{border-color:var(--primary);background:rgba(197,168,112,0.05);box-shadow:0 0 0 3px rgba(197,168,112,0.1)}
+    .form-group textarea{resize:vertical;min-height:120px}
+    .required-asterisk{color:#e87070;margin-left:3px}
+    .form-info{font-size:0.825rem;color:var(--fg-muted);margin-bottom:20px}
+    .checkbox-group{display:flex;align-items:flex-start;gap:12px;margin-bottom:24px}
+    .checkbox-group input[type="checkbox"]{width:18px;height:18px;margin-top:2px;accent-color:var(--primary);cursor:pointer}
+    .checkbox-group label{font-size:0.85rem;color:var(--fg-muted);line-height:1.5;cursor:pointer;font-weight:400;margin-bottom:0;text-transform:none;letter-spacing:normal}
+    .checkbox-group a{color:var(--primary);text-decoration:underline;transition:var(--transition)}
+    .checkbox-group a:hover{color:#d4b87e}
+    .alert{border-radius:8px;padding:16px 20px;font-size:0.925rem;margin-bottom:24px;display:none}
+    .alert.show{display:block}
+    .alert-success{background:var(--success-bg);color:var(--primary);border:1px solid rgba(197,168,112,0.25)}
+    .alert-error{background:var(--error-bg);color:var(--error-fg);border:1px solid rgba(220,80,80,0.2)}
+    .btn-submit{width:100%;background:linear-gradient(135deg,var(--primary),#d4b87e);color:#0a0c10;border:none;padding:18px;border-radius:8px;font-family:'Inter',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:var(--transition);letter-spacing:0.03em}
+    .btn-submit:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 32px var(--primary-glow)}
+    .btn-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+    footer{border-top:1px solid var(--border);padding:52px 40px;text-align:center}
+    footer p{color:var(--fg-muted);font-size:0.875rem;line-height:1.7}
+    #faq{background:transparent}
+    #faq .section-header{text-align:center;margin-bottom:56px}
+    .faq-list{display:flex;flex-direction:column;gap:12px}
+    .faq-item{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color var(--transition)}
+    .faq-item.open{border-color:rgba(197,168,112,0.35)}
+    .faq-question{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 28px;background:none;border:none;cursor:pointer;text-align:left;color:var(--fg);font-family:'Inter',sans-serif;font-size:0.975rem;font-weight:600;line-height:1.5;transition:color var(--transition)}
+    .faq-item.open .faq-question{color:var(--primary)}
+    .faq-chevron{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--primary-dim);display:flex;align-items:center;justify-content:center;transition:transform var(--transition),background var(--transition)}
+    .faq-item.open .faq-chevron{transform:rotate(180deg);background:rgba(197,168,112,0.22)}
+    .faq-chevron svg{width:14px;height:14px;stroke:var(--primary);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height 0.38s cubic-bezier(0.4,0,0.2,1)}
+    .faq-answer-inner{padding:0 28px 22px;font-size:0.925rem;color:var(--fg-muted);line-height:1.8;border-top:1px solid var(--border);padding-top:18px}
+    #chat-fab{position:fixed;bottom:28px;right:28px;z-index:500;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#d4b87e);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(197,168,112,0.35);transition:var(--transition)}
+    #chat-fab:hover{transform:scale(1.08);box-shadow:0 12px 40px rgba(197,168,112,0.5)}
+    #chat-fab svg{width:28px;height:28px;stroke:#0a0c10;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    #chat-fab .chat-badge{position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:#e87070;border-radius:50%;border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;color:#fff}
+    #chat-window{position:fixed;bottom:100px;right:28px;z-index:499;width:370px;max-height:540px;background:var(--bg-card);border:1px solid rgba(197,168,112,0.25);border-radius:18px;box-shadow:0 24px 80px rgba(0,0,0,0.6);display:flex;flex-direction:column;overflow:hidden;transform:scale(0.9) translateY(20px);transform-origin:bottom right;opacity:0;pointer-events:none;transition:opacity 0.25s ease,transform 0.25s cubic-bezier(0.34,1.56,0.64,1)}
+    #chat-window.open{opacity:1;transform:scale(1) translateY(0);pointer-events:all}
+    .chat-header{display:flex;align-items:center;gap:12px;padding:18px 20px;background:linear-gradient(135deg,rgba(197,168,112,0.12),rgba(197,168,112,0.04));border-bottom:1px solid var(--border);flex-shrink:0}
+    .chat-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#d4b87e);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .chat-avatar svg{width:20px;height:20px;stroke:#0a0c10;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .chat-header-info h4{font-size:0.95rem;font-weight:700;color:var(--fg);line-height:1.2}
+    .chat-header-info p{font-size:0.75rem;color:var(--primary);display:flex;align-items:center;gap:5px}
+    .chat-header-info p::before{content:'';width:7px;height:7px;background:#4ade80;border-radius:50%;display:inline-block}
+    .chat-close{margin-left:auto;background:none;border:none;cursor:pointer;color:var(--fg-muted);font-size:1.4rem;line-height:1;transition:color var(--transition)}
+    .chat-close:hover{color:var(--fg)}
+    .chat-messages{flex:1;overflow-y:auto;padding:18px 16px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+    .chat-messages::-webkit-scrollbar{width:4px}
+    .chat-messages::-webkit-scrollbar-track{background:transparent}
+    .chat-messages::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+    .chat-msg{max-width:86%;padding:12px 16px;border-radius:14px;font-size:0.875rem;line-height:1.6;animation:msgIn 0.2s ease}
+    @keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    .chat-msg.bot{background:var(--bg-card-2);border:1px solid var(--border);color:var(--fg);border-radius:4px 14px 14px 14px;align-self:flex-start}
+    .chat-msg.user{background:linear-gradient(135deg,var(--primary),#d4b87e);color:#0a0c10;font-weight:500;border-radius:14px 4px 14px 14px;align-self:flex-end}
+    .chat-suggestions{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 12px;flex-shrink:0}
+    .chat-suggestion{background:var(--primary-dim);border:1px solid rgba(197,168,112,0.2);color:var(--primary);padding:6px 12px;border-radius:100px;font-size:0.75rem;font-weight:500;cursor:pointer;transition:var(--transition);font-family:'Inter',sans-serif}
+    .chat-suggestion:hover{background:rgba(197,168,112,0.22);border-color:var(--primary)}
+    .chat-input-row{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--border);flex-shrink:0}
+    #chat-input{flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:10px;padding:10px 14px;color:var(--fg);font-family:'Inter',sans-serif;font-size:0.875rem;outline:none;transition:border-color var(--transition)}
+    #chat-input::placeholder{color:rgba(138,143,158,0.5)}
+    #chat-input:focus{border-color:var(--primary)}
+    #chat-send{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--primary),#d4b87e);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:var(--transition)}
+    #chat-send:hover{transform:scale(1.08)}
+    #chat-send svg{width:18px;height:18px;stroke:#0a0c10;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+    .chat-typing{display:flex;gap:4px;padding:10px 14px;background:var(--bg-card-2);border:1px solid var(--border);border-radius:4px 14px 14px 14px;width:fit-content;align-self:flex-start}
+    .chat-typing span{width:6px;height:6px;background:var(--fg-muted);border-radius:50%;animation:typingDot 1.2s infinite}
+    .chat-typing span:nth-child(2){animation-delay:0.2s}
+    .chat-typing span:nth-child(3){animation-delay:0.4s}
+    @keyframes typingDot{0%,60%,100%{opacity:0.2;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+    @media(max-width:480px){#chat-window{width:calc(100vw - 32px);right:16px;bottom:90px}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(32px);transition:opacity 0.7s ease,transform 0.7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-delay-1{transition-delay:0.1s}
+    .reveal-delay-2{transition-delay:0.2s}
+    .reveal-delay-3{transition-delay:0.3s}
+    .reveal-delay-4{transition-delay:0.4s}
+    .reveal-delay-5{transition-delay:0.5s}
+    .reveal-delay-6{transition-delay:0.6s}
+    #scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--primary),#d4b87e);z-index:200;width:0%;transition:width 0.1s linear}
+    @media(max-width:768px){nav{padding:16px 24px}section{padding:72px 24px}#hero{padding-top:140px;padding-bottom:80px}#stats{padding:0 24px 60px}}
   </style>
 </head>
-
 <body>
-
-  <!-- Scroll Progress -->
   <div id="scroll-progress"></div>
-
-  <!-- Ambient Orbs -->
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
-
-  <!-- Navigation -->
   <nav id="navbar">
     <div class="nav-logo">
       <div class="nav-logo-badge"><span>JIBA</span></div>
@@ -1239,56 +208,29 @@
     </div>
     <button class="nav-cta" onclick="scrollToContact()">Solicitar Consultoría</button>
   </nav>
-
   <div class="wrapper">
-
-    <!-- ── Hero ── -->
     <section id="hero">
       <div class="container">
         <div class="hero-badge">Especialistas en Derecho Penal</div>
         <div class="hero-accent-line"></div>
-        <h1>
-          Consultoría Jurídica<br>
-          en el <span class="accent">Área Penal</span><br>
-        </h1>
-        <p class="hero-sub">
-          Defensa legal estratégica e integral, garantizando la protección de sus derechos ante cualquier contingencia
-          de índole penal o procesal.
-        </p>
+        <h1>Consultoría Jurídica<br>en el <span class="accent">Área Penal</span><br></h1>
+        <p class="hero-sub">Defensa legal estratégica e integral, garantizando la protección de sus derechos ante cualquier contingencia de índole penal o procesal.</p>
         <div class="hero-actions">
           <button class="btn-primary" onclick="scrollToContact()">Solicitar Consultoría</button>
-          <button class="btn-secondary"
-            onclick="document.getElementById('servicios').scrollIntoView({behavior:'smooth'})">Explorar
-            Servicios</button>
+          <button class="btn-secondary" onclick="document.getElementById('servicios').scrollIntoView({behavior:'smooth'})">Explorar Servicios</button>
         </div>
       </div>
     </section>
-
-    <!-- ── Stats ── -->
     <div id="stats">
       <div class="container">
         <div class="stats-grid">
-          <div class="stat-item reveal">
-            <div class="stat-num">+15</div>
-            <div class="stat-label">Años de Experiencia</div>
-          </div>
-          <div class="stat-item reveal reveal-delay-1">
-            <div class="stat-num">3</div>
-            <div class="stat-label">Continentes</div>
-          </div>
-          <div class="stat-item reveal reveal-delay-2">
-            <div class="stat-num">6</div>
-            <div class="stat-label">Áreas de Especialización</div>
-          </div>
-          <div class="stat-item reveal reveal-delay-3">
-            <div class="stat-num">100%</div>
-            <div class="stat-label">Compromiso Ético</div>
-          </div>
+          <div class="stat-item reveal"><div class="stat-num">+15</div><div class="stat-label">Años de Experiencia</div></div>
+          <div class="stat-item reveal reveal-delay-1"><div class="stat-num">3</div><div class="stat-label">Continentes</div></div>
+          <div class="stat-item reveal reveal-delay-2"><div class="stat-num">6</div><div class="stat-label">Áreas de Especialización</div></div>
+          <div class="stat-item reveal reveal-delay-3"><div class="stat-num">100%</div><div class="stat-label">Compromiso Ético</div></div>
         </div>
       </div>
     </div>
-
-    <!-- ── Services ── -->
     <section id="servicios">
       <div class="container">
         <div class="section-header reveal">
@@ -1297,171 +239,89 @@
           <div class="line-accent"></div>
         </div>
         <div class="services-grid">
-
           <div class="service-card reveal reveal-delay-1">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M16 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
-                <path d="M2 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
-                <path d="M7 21h10" />
-                <path d="M12 3v18" />
-                <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
-              </svg>
-            </div>
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M16 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M2 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></div>
             <h3>Defensa Penal</h3>
-            <p>Representación y defensa integral en toda clase de procedimientos penales, desde la fase de instrucción
-              hasta el juicio oral.</p>
+            <p>Representación y defensa integral en toda clase de procedimientos penales, desde la fase de instrucción hasta el juicio oral.</p>
           </div>
-
           <div class="service-card reveal reveal-delay-2">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M14.5 12.5l-8 8a2.119 2.119 0 1 1-3-3l8-8" />
-                <path d="M16 16l6-6" />
-                <path d="M8 8l6-6" />
-                <path d="M9 7l8 8" />
-                <path d="M21 11l-8-8" />
-              </svg>
-            </div>
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M14.5 12.5l-8 8a2.119 2.119 0 1 1-3-3l8-8"/><path d="M16 16l6-6"/><path d="M8 8l6-6"/><path d="M9 7l8 8"/><path d="M21 11l-8-8"/></svg></div>
             <h3>Acusación Particular y Privada</h3>
-            <p>Asistencia a víctimas de delitos, redacción de querellas y denuncias, reclamando la restitución,
-              reparación o indemnización de los daños.</p>
+            <p>Asistencia a víctimas de delitos, redacción de querellas y denuncias, reclamando la restitución, reparación o indemnización de los daños.</p>
           </div>
-
           <div class="service-card reveal reveal-delay-3">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-                <rect width="20" height="14" x="2" y="6" rx="2" />
-              </svg>
-            </div>
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg></div>
             <h3>Derecho Penal Económico</h3>
-            <p>Asesoramiento especializado en delitos socioeconómicos, societarios, blanqueo de capitales, fiscales y
-              estafas complejas.</p>
+            <p>Asesoramiento especializado en delitos socioeconómicos, societarios, blanqueo de capitales, fiscales y estafas complejas.</p>
           </div>
-
           <div class="service-card reveal reveal-delay-1">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
-                <path d="m9 12 2 2 4-4" />
-              </svg>
-            </div>
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
             <h3>Compliance Penal</h3>
-            <p>Diseño e implementación de modelos de prevención de delitos (Corporate Compliance) para empresas y
-              personas jurídicas.</p>
+            <p>Diseño e implementación de modelos de prevención de delitos (Corporate Compliance) para empresas y personas jurídicas.</p>
           </div>
-
           <div class="service-card reveal reveal-delay-2">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M3 21h18" />
-                <path d="M4.5 21V9" />
-                <path d="M19.5 21V9" />
-                <path d="M9.5 21V9" />
-                <path d="M14.5 21V9" />
-                <path d="M3 9l9-7 9 7v2H3z" />
-              </svg>
-            </div>
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M4.5 21V9"/><path d="M19.5 21V9"/><path d="M9.5 21V9"/><path d="M14.5 21V9"/><path d="M3 9l9-7 9 7v2H3z"/></svg></div>
             <h3>Derecho Penitenciario</h3>
-            <p>Asesoramiento y tramitación de permisos de salida, progresiones de grado, libertad condicional y recursos
-              ante los Juzgados de Vigilancia Penitenciaria.</p>
+            <p>Asesoramiento y tramitación de permisos de salida, progresiones de grado, libertad condicional y recursos ante los Juzgados de Vigilancia Penitenciaria.</p>
           </div>
-
           <div class="service-card reveal reveal-delay-3">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-              </svg>
-            </div>
+            <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
             <h3>Violencia de Género y Doméstica</h3>
-            <p>Defensa y asesoramiento experto en procesos de violencia de género, medidas cautelares, órdenes de
-              protección y violencia intrafamiliar.</p>
+            <p>Defensa y asesoramiento experto en procesos de violencia de género, medidas cautelares, órdenes de protección y violencia intrafamiliar.</p>
           </div>
-
         </div>
       </div>
     </section>
-
-    <!-- ── Experience ── -->
     <section id="experiencia">
       <div class="container-md">
         <div class="exp-card reveal">
           <div class="quote-mark">"</div>
           <div class="mb-8">
             <div class="line-accent left" style="margin-bottom:24px;"></div>
-            <h2 class="section-title" style="font-size:2rem; margin-bottom:0;">Experiencia y Credenciales</h2>
+            <h2 class="section-title" style="font-size:2rem;margin-bottom:0;">Experiencia y Credenciales</h2>
           </div>
           <div class="exp-body">
-            <p>Con amplia experiencia comprobada en los tribunales en el ámbito del derecho penal,
-              ofrezco servicios altamente especializados fundamentados en un profundo conocimiento técnico,
-              jurisprudencial y práctico.</p>
-            <p>A lo largo de mi trayectoria he asumido la defensa y acusación en procedimientos penales de alta
-              complejidad, actuando ante diferentes instancias judiciales para defender fervientemente los intereses de
-              mis clientes.</p>
-            <p>Mi enfoque combina rigor analítico, un estudio minucioso de cada expediente y una robusta estrategia
-              procesal para garantizar su derecho a la defensa y buscar la absolución o la mejor alternativa legal
-              posible dentro de nuestro ordenamiento jurídico penal.</p>
+            <p>Con amplia experiencia comprobada en los tribunales en el ámbito del derecho penal, ofrezco servicios altamente especializados fundamentados en un profundo conocimiento técnico, jurisprudencial y práctico.</p>
+            <p>A lo largo de mi trayectoria he asumido la defensa y acusación en procedimientos penales de alta complejidad, actuando ante diferentes instancias judiciales para defender fervientemente los intereses de mis clientes.</p>
+            <p>Mi enfoque combina rigor analítico, un estudio minucioso de cada expediente y una robusta estrategia procesal para garantizar su derecho a la defensa y buscar la absolución o la mejor alternativa legal posible dentro de nuestro ordenamiento jurídico penal.</p>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- ── Contact ── -->
     <section id="contacto">
       <div class="container-sm">
         <div class="section-header reveal">
           <div class="section-label">Contacto</div>
           <h2 class="section-title">Contacto Profesional</h2>
           <div class="line-accent"></div>
-          <p>Para obtener mayor información sobre nuestros servicios o agendar una consulta inicial, no dude en
-            comunicarse con nosotros completando el siguiente formulario. Evaluaremos su caso con la máxima
-            confidencialidad y rigor profesional.</p>
+          <p>Para obtener mayor información sobre nuestros servicios o agendar una consulta inicial, no dude en comunicarse con nosotros completando el siguiente formulario. Evaluaremos su caso con la máxima confidencialidad y rigor profesional.</p>
         </div>
-
         <div class="contact-card reveal">
           <form id="contact-form">
             <p class="form-info">Los campos marcados con <span class="required-asterisk">*</span> son obligatorios.</p>
-
             <div class="form-group">
               <label for="nombre">Nombre Completo <span class="required-asterisk">*</span></label>
               <input id="nombre" type="text" name="nombre" required placeholder="Ingrese su nombre" />
             </div>
-
             <div class="form-group">
               <label for="email">Correo Electrónico <span class="required-asterisk">*</span></label>
               <input id="email" type="email" name="email" required placeholder="correo@ejemplo.com" />
             </div>
-
             <div class="form-group">
               <label for="mensaje">Mensaje <span class="required-asterisk">*</span></label>
-              <textarea id="mensaje" name="mensaje" required
-                placeholder="Escriba aquí su mensaje o consulta penal brevemente..."></textarea>
+              <textarea id="mensaje" name="mensaje" required placeholder="Escriba aquí su mensaje o consulta penal brevemente..."></textarea>
             </div>
-
             <div class="checkbox-group">
               <input type="checkbox" id="gdpr" name="gdpr" required>
-              <label for="gdpr">He leído y acepto la <a href="#">Política de Privacidad</a> y consiento el tratamiento
-                de mis datos personales según el RGPD. <span class="required-asterisk">*</span></label>
+              <label for="gdpr">He leído y acepto la <a href="#">Política de Privacidad</a> y consiento el tratamiento de mis datos personales según el RGPD. <span class="required-asterisk">*</span></label>
             </div>
-
-            <div id="alert-success" class="alert alert-success" role="alert">
-              ✓ Gracias por tu mensaje. Te contactaré pronto.
-            </div>
-            <div id="alert-error" class="alert alert-error" role="alert">
-              ✕ Error al enviar el mensaje. Por favor, inténtalo de nuevo.
-            </div>
-
-            <button type="submit" id="btn-submit" class="btn-submit">
-              Enviar Solicitud
-            </button>
+            <div id="alert-success" class="alert alert-success" role="alert">✓ Gracias por tu mensaje. Te contactaré pronto.</div>
+            <div id="alert-error" class="alert alert-error" role="alert">✕ Error al enviar el mensaje. Por favor, inténtalo de nuevo.</div>
+            <button type="submit" id="btn-submit" class="btn-submit">Enviar Solicitud</button>
           </form>
         </div>
       </div>
     </section>
-
-    <!-- ── FAQ ── -->
     <section id="faq">
       <div class="container-md">
         <div class="section-header reveal">
@@ -1470,171 +330,54 @@
           <div class="line-accent"></div>
         </div>
         <div class="faq-list" id="faq-list">
-
           <div class="faq-item reveal reveal-delay-1">
-            <button class="faq-question" aria-expanded="false">
-              He sido víctima de un hecho delictivo, ¿qué plazo tengo para denunciar?
-              <span class="faq-chevron"><svg viewBox="0 0 24 24">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg></span>
-            </button>
-            <div class="faq-answer" role="region">
-              <div class="faq-answer-inner">Si se trata de una falta (por ejemplo, hurto hasta 400 euros, lesiones,
-                amenazas o coacciones leves) el plazo para interponer denuncia es de seis meses desde la comisión de la
-                misma. En el caso de una injuria o calumnia, un año. En el resto de los delitos (robo, estafa,
-                apropiación indebida o impago de pensiones) el plazo sería de 3 a 20 años, dependiendo de la pena
-                asociada.</div>
-            </div>
+            <button class="faq-question" aria-expanded="false">He sido víctima de un hecho delictivo, ¿qué plazo tengo para denunciar?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+            <div class="faq-answer" role="region"><div class="faq-answer-inner">Si se trata de una falta (por ejemplo, hurto hasta 400 euros, lesiones, amenazas o coacciones leves) el plazo para interponer denuncia es de seis meses desde la comisión de la misma. En el caso de una injuria o calumnia, un año. En el resto de los delitos (robo, estafa, apropiación indebida o impago de pensiones) el plazo sería de 3 a 20 años, dependiendo de la pena asociada.</div></div>
           </div>
-
           <div class="faq-item reveal reveal-delay-2">
-            <button class="faq-question" aria-expanded="false">
-              ¿Qué es una orden de protección/alejamiento en un procedimiento de violencia de género?
-              <span class="faq-chevron"><svg viewBox="0 0 24 24">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg></span>
-            </button>
-            <div class="faq-answer" role="region">
-              <div class="faq-answer-inner">Una orden de alejamiento es una medida acordada por el Juez para proteger a
-                la presunta víctima de malos tratos. Su incumplimiento implica la comisión de un delito de
-                quebrantamiento de condena. Las consecuencias de la orden son que el agresor no puede acercarse a la
-                víctima a menos de una distancia determinada ni comunicarse con ella por ningún medio. Su duración puede
-                ser de 1 a 5 años, y la única manera de revocarla es obtener una sentencia absolutoria.</div>
-            </div>
+            <button class="faq-question" aria-expanded="false">¿Qué es una orden de protección/alejamiento en un procedimiento de violencia de género?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+            <div class="faq-answer" role="region"><div class="faq-answer-inner">Una orden de alejamiento es una medida acordada por el Juez para proteger a la presunta víctima de malos tratos. Su incumplimiento implica la comisión de un delito de quebrantamiento de condena. Las consecuencias de la orden son que el agresor no puede acercarse a la víctima a menos de una distancia determinada ni comunicarse con ella por ningún medio. Su duración puede ser de 1 a 5 años, y la única manera de revocarla es obtener una sentencia absolutoria.</div></div>
           </div>
-
           <div class="faq-item reveal reveal-delay-3">
-            <button class="faq-question" aria-expanded="false">
-              He sido condenado a dos años de privación de libertad. ¿Tendré que entrar en prisión?
-              <span class="faq-chevron"><svg viewBox="0 0 24 24">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg></span>
-            </button>
-            <div class="faq-answer" role="region">
-              <div class="faq-answer-inner">Si usted no tiene antecedentes penales, cabe la posibilidad de solicitar al
-                Juzgado la suspensión de su condena, a condición de que durante el plazo de suspensión no vuelva a
-                delinquir. En algunos casos, cabría también la posibilidad de solicitar la sustitución de la pena por
-                una multa o trabajos en beneficios de la comunidad.</div>
-            </div>
+            <button class="faq-question" aria-expanded="false">He sido condenado a dos años de privación de libertad. ¿Tendré que entrar en prisión?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+            <div class="faq-answer" role="region"><div class="faq-answer-inner">Si usted no tiene antecedentes penales, cabe la posibilidad de solicitar al Juzgado la suspensión de su condena, a condición de que durante el plazo de suspensión no vuelva a delinquir. En algunos casos, cabría también la posibilidad de solicitar la sustitución de la pena por una multa o trabajos en beneficios de la comunidad.</div></div>
           </div>
-
           <div class="faq-item reveal reveal-delay-1">
-            <button class="faq-question" aria-expanded="false">
-              ¿A partir de qué cantidad de alcohol se incurre en un delito de conducción bajo los efectos del alcohol?
-              <span class="faq-chevron"><svg viewBox="0 0 24 24">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg></span>
-            </button>
-            <div class="faq-answer" role="region">
-              <div class="faq-answer-inner">En todo caso, será condenado el que condujere con una tasa de alcohol en
-                aire superior a 0,60 mg/l, o de alcohol en sangre superior a 1,2 gr/l. Estas cantidades equivalen
-                aproximadamente a 3 a 4 cervezas de tercio, 2 copas de licor destilado o 4 vasos y medio de vino para
-                personas de unos 70 a 90 Kg.</div>
-            </div>
+            <button class="faq-question" aria-expanded="false">¿A partir de qué cantidad de alcohol se incurre en un delito de conducción bajo los efectos del alcohol?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+            <div class="faq-answer" role="region"><div class="faq-answer-inner">En todo caso, será condenado el que condujere con una tasa de alcohol en aire superior a 0,60 mg/l, o de alcohol en sangre superior a 1,2 gr/l. Estas cantidades equivalen aproximadamente a 3 a 4 cervezas de tercio, 2 copas de licor destilado o 4 vasos y medio de vino para personas de unos 70 a 90 Kg.</div></div>
           </div>
-
           <div class="faq-item reveal reveal-delay-2">
-            <button class="faq-question" aria-expanded="false">
-              Mi ex pareja no paga la pensión de alimentos a nuestros hijos. ¿Se considera un delito?
-              <span class="faq-chevron"><svg viewBox="0 0 24 24">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg></span>
-            </button>
-            <div class="faq-answer" role="region">
-              <div class="faq-answer-inner">Sí, es un delito, cuando el impago se produce durante dos meses consecutivos
-                o cuatro alternos.</div>
-            </div>
+            <button class="faq-question" aria-expanded="false">Mi ex pareja no paga la pensión de alimentos a nuestros hijos. ¿Se considera un delito?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+            <div class="faq-answer" role="region"><div class="faq-answer-inner">Sí, es un delito, cuando el impago se produce durante dos meses consecutivos o cuatro alternos.</div></div>
           </div>
-
           <div class="faq-item reveal reveal-delay-3">
-            <button class="faq-question" aria-expanded="false">
-              ¿Conducir sin carné se considera delito o sólo acarrea una sanción administrativa?
-              <span class="faq-chevron"><svg viewBox="0 0 24 24">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg></span>
-            </button>
-            <div class="faq-answer" role="region">
-              <div class="faq-answer-inner">Es un delito tipificado en el artículo 384 del Código Penal y puede suponer
-                pena de prisión de 3 a 6 meses, multa de 12 a 24 meses (en función de los ingresos del conductor) o
-                trabajos a beneficio de la comunidad de 30 a 90 días. La condena generará los correspondientes
-                antecedentes penales.</div>
-            </div>
+            <button class="faq-question" aria-expanded="false">¿Conducir sin carné se considera delito o sólo acarrea una sanción administrativa?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+            <div class="faq-answer" role="region"><div class="faq-answer-inner">Es un delito tipificado en el artículo 384 del Código Penal y puede suponer pena de prisión de 3 a 6 meses, multa de 12 a 24 meses (en función de los ingresos del conductor) o trabajos a beneficio de la comunidad de 30 a 90 días. La condena generará los correspondientes antecedentes penales.</div></div>
           </div>
-
           <div class="faq-item reveal reveal-delay-1">
-            <button class="faq-question" aria-expanded="false">
-              ¿Qué proceso seguís con los casos? ¿Cuáles son los primeros pasos?
-              <span class="faq-chevron"><svg viewBox="0 0 24 24">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg></span>
-            </button>
-            <div class="faq-answer" role="region">
-              <div class="faq-answer-inner">Tras concertar por teléfono o correo electrónico una cita previa, nos
-                reuniremos con usted, le escucharemos y le haremos algunas preguntas para comprender en profundidad su
-                problema y orientarle en la dirección adecuada. Esta primera reunión es muy importante: conoceremos su
-                caso, usted nos conocerá personalmente, y esbozaremos la estrategia a seguir con un asesoramiento
-                preliminar.</div>
-            </div>
+            <button class="faq-question" aria-expanded="false">¿Qué proceso seguís con los casos? ¿Cuáles son los primeros pasos?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+            <div class="faq-answer" role="region"><div class="faq-answer-inner">Tras concertar por teléfono o correo electrónico una cita previa, nos reuniremos con usted, le escucharemos y le haremos algunas preguntas para comprender en profundidad su problema y orientarle en la dirección adecuada. Esta primera reunión es muy importante: conoceremos su caso, usted nos conocerá personalmente, y esbozaremos la estrategia a seguir con un asesoramiento preliminar.</div></div>
           </div>
-
           <div class="faq-item reveal reveal-delay-2">
-            <button class="faq-question" aria-expanded="false">
-              ¿Cobráis la primera visita?
-              <span class="faq-chevron"><svg viewBox="0 0 24 24">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg></span>
-            </button>
-            <div class="faq-answer" role="region">
-              <div class="faq-answer-inner">A diferencia de otros despachos, consideramos que la información, las
-                explicaciones y la atención que dispensamos en la primera visita tienen un gran valor, y por eso las
-                cobramos, salvo las consultas relacionadas con accidentes de tráfico por las singulares características
-                de estos casos.</div>
-            </div>
+            <button class="faq-question" aria-expanded="false">¿Cobráis la primera visita?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+            <div class="faq-answer" role="region"><div class="faq-answer-inner">A diferencia de otros despachos, consideramos que la información, las explicaciones y la atención que dispensamos en la primera visita tienen un gran valor, y por eso las cobramos, salvo las consultas relacionadas con accidentes de tráfico por las singulares características de estos casos.</div></div>
           </div>
-
           <div class="faq-item reveal reveal-delay-3">
-            <button class="faq-question" aria-expanded="false">
-              ¿Y después de la primera visita? ¿Qué hacéis cuando se acepta el presupuesto?
-              <span class="faq-chevron"><svg viewBox="0 0 24 24">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg></span>
-            </button>
-            <div class="faq-answer" role="region">
-              <div class="faq-answer-inner">Después de la primera reunión le facilitaremos un presupuesto dividido por
-                fases. Usted decide en todo momento hasta dónde quiere llegar. Tras la aceptación, comenzamos a ejecutar
-                las acciones dirigidas a conseguir la defensa más eficaz de sus intereses, informándole de los
-                resultados y adaptando las acciones siempre con su consentimiento.</div>
-            </div>
+            <button class="faq-question" aria-expanded="false">¿Y después de la primera visita? ¿Qué hacéis cuando se acepta el presupuesto?<span class="faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></button>
+            <div class="faq-answer" role="region"><div class="faq-answer-inner">Después de la primera reunión le facilitaremos un presupuesto dividido por fases. Usted decide en todo momento hasta dónde quiere llegar. Tras la aceptación, comenzamos a ejecutar las acciones dirigidas a conseguir la defensa más eficaz de sus intereses, informándole de los resultados y adaptando las acciones siempre con su consentimiento.</div></div>
           </div>
-
         </div>
       </div>
     </section>
-
-    <!-- ── Footer ── -->
     <footer>
       <div class="container">
-        <!-- Logo JIBA -->
         <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:20px;">
-          <div style="
-            width:64px;height:64px;border-radius:50%;
-            background:linear-gradient(135deg,#c5a870,#d4b87e);
-            display:flex;align-items:center;justify-content:center;
-            box-shadow:0 4px 20px rgba(197,168,112,0.35);
-            flex-shrink:0;
-          ">
-            <span style="
-              font-family:'Playfair Display',serif;
-              font-size:1.15rem;font-weight:700;
-              color:#0a0c10;letter-spacing:0.04em;
-            ">JIBA</span>
+          <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#c5a870,#d4b87e);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(197,168,112,0.35);flex-shrink:0;">
+            <span style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#0a0c10;letter-spacing:0.04em;">JIBA</span>
           </div>
           <div style="text-align:left;">
-            <div
-              style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:#f0ede6;line-height:1.2;">
-              Consultoría Jurídica</div>
-            <div style="font-size:0.8rem;color:#c5a870;letter-spacing:0.08em;text-transform:uppercase;margin-top:2px;">
-              Área Penal</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:#f0ede6;line-height:1.2;">Consultoría Jurídica</div>
+            <div style="font-size:0.8rem;color:#c5a870;letter-spacing:0.08em;text-transform:uppercase;margin-top:2px;">Área Penal</div>
           </div>
         </div>
         <div style="width:40px;height:1px;background:rgba(197,168,112,0.3);margin:0 auto 18px;"></div>
@@ -1642,38 +385,19 @@
         <p style="margin-top:6px;">Defendiendo sus derechos con rigor, estrategia procesal y compromiso.</p>
       </div>
     </footer>
-
-  </div><!-- / wrapper -->
-
-  <!-- ── Chatbot FAB ── -->
+  </div>
   <button id="chat-fab" aria-label="Abrir chat" onclick="toggleChat()">
-    <svg id="chat-icon-open" viewBox="0 0 24 24">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-    </svg>
-    <svg id="chat-icon-close" viewBox="0 0 24 24" style="display:none">
-      <line x1="18" y1="6" x2="6" y2="18" />
-      <line x1="6" y1="6" x2="18" y2="18" />
-    </svg>
+    <svg id="chat-icon-open" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <svg id="chat-icon-close" viewBox="0 0 24 24" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     <span class="chat-badge" id="chat-badge">1</span>
   </button>
-
-  <!-- ── Chat Window ── -->
   <div id="chat-window" role="dialog" aria-label="Asistente virtual">
     <div class="chat-header">
-      <div class="chat-avatar">
-        <svg viewBox="0 0 24 24">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        </svg>
-      </div>
-      <div class="chat-header-info">
-        <h4>Asistente Legal</h4>
-        <p>En línea ahora</p>
-      </div>
+      <div class="chat-avatar"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="chat-header-info"><h4>Asistente Legal</h4><p>En línea ahora</p></div>
       <button class="chat-close" onclick="toggleChat()" aria-label="Cerrar chat">&times;</button>
     </div>
-
     <div class="chat-messages" id="chat-messages"></div>
-
     <div class="chat-suggestions" id="chat-suggestions">
       <button class="chat-suggestion" onclick="sendSuggestion(this)">Plazos denuncia</button>
       <button class="chat-suggestion" onclick="sendSuggestion(this)">Orden de alejamiento</button>
@@ -1681,171 +405,93 @@
       <button class="chat-suggestion" onclick="sendSuggestion(this)">Alcohol al volante</button>
       <button class="chat-suggestion" onclick="sendSuggestion(this)">Primera visita</button>
     </div>
-
     <div class="chat-input-row">
-      <input id="chat-input" type="text" placeholder="Escribe tu pregunta..." autocomplete="off"
-        onkeydown="if(event.key==='Enter') sendChat()" />
-      <button id="chat-send" onclick="sendChat()" aria-label="Enviar">
-        <svg viewBox="0 0 24 24">
-          <line x1="22" y1="2" x2="11" y2="13" />
-          <polygon points="22 2 15 22 11 13 2 9 22 2" />
-        </svg>
-      </button>
+      <input id="chat-input" type="text" placeholder="Escribe tu pregunta..." autocomplete="off" onkeydown="if(event.key==='Enter') sendChat()" />
+      <button id="chat-send" onclick="sendChat()" aria-label="Enviar"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
     </div>
   </div>
-
   <script>
-    // ── Navbar scroll ──
-    const navbar = document.getElementById('navbar');
-    const scrollProgress = document.getElementById('scroll-progress');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 40);
-      const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-      scrollProgress.style.width = pct + '%';
-    }, { passive: true });
-
-    // ── Scroll reveal ──
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => observer.observe(el));
-
-    // ── Scroll to contact ──
-    function scrollToContact() {
-      document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // ── Form submit ──
-    const form = document.getElementById('contact-form');
-    const btnSubmit = document.getElementById('btn-submit');
-    const alertSuccess = document.getElementById('alert-success');
-    const alertError = document.getElementById('alert-error');
-
-    form.addEventListener('submit', async (e) => {
+    const navbar=document.getElementById('navbar');
+    const scrollProgress=document.getElementById('scroll-progress');
+    window.addEventListener('scroll',()=>{
+      navbar.classList.toggle('scrolled',window.scrollY>40);
+      const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+      scrollProgress.style.width=pct+'%';
+    },{passive:true});
+    const revealEls=document.querySelectorAll('.reveal');
+    const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:0.12});
+    revealEls.forEach(el=>observer.observe(el));
+    function scrollToContact(){document.getElementById('contacto').scrollIntoView({behavior:'smooth'});}
+    const form=document.getElementById('contact-form');
+    const btnSubmit=document.getElementById('btn-submit');
+    const alertSuccess=document.getElementById('alert-success');
+    const alertError=document.getElementById('alert-error');
+    form.addEventListener('submit',async(e)=>{
       e.preventDefault();
-      const nombre = document.getElementById('nombre').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const mensaje = document.getElementById('mensaje').value.trim();
-      const gdpr = document.getElementById('gdpr').checked;
-
-      if (!nombre || !email || !mensaje || !gdpr) return;
-
-      btnSubmit.disabled = true;
-      btnSubmit.textContent = 'Enviando...';
-      alertSuccess.classList.remove('show');
-      alertError.classList.remove('show');
-
-      try {
-        const res = await fetch(
-          'https://andrea-nuclio.app.n8n.cloud/webhook-test/soporte-tickets',
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nombre, email, mensaje, gdpr }),
-          }
-        );
-
-        if (res.ok) {
-          alertSuccess.classList.add('show');
-          form.reset();
-          btnSubmit.textContent = 'Enviado ✓';
-          setTimeout(() => { btnSubmit.textContent = 'Enviar Solicitud'; btnSubmit.disabled = false; }, 3500);
-        } else {
-          throw new Error('Response not ok');
-        }
-      } catch {
-        alertError.classList.add('show');
-        btnSubmit.textContent = 'Enviar Solicitud';
-        btnSubmit.disabled = false;
+      const nombre=document.getElementById('nombre').value.trim();
+      const email=document.getElementById('email').value.trim();
+      const mensaje=document.getElementById('mensaje').value.trim();
+      const gdpr=document.getElementById('gdpr').checked;
+      if(!nombre||!email||!mensaje||!gdpr)return;
+      btnSubmit.disabled=true;btnSubmit.textContent='Enviando...';
+      alertSuccess.classList.remove('show');alertError.classList.remove('show');
+      try{
+        const res=await fetch('https://andrea-nuclio.app.n8n.cloud/webhook/soporte-tickets',{
+          method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({nombre,email,mensaje,gdpr}),
+        });
+        if(res.ok){
+          alertSuccess.classList.add('show');form.reset();btnSubmit.textContent='Enviado ✓';
+          setTimeout(()=>{btnSubmit.textContent='Enviar Solicitud';btnSubmit.disabled=false;},3500);
+        }else{throw new Error('Response not ok');}
+      }catch{
+        alertError.classList.add('show');btnSubmit.textContent='Enviar Solicitud';btnSubmit.disabled=false;
       }
     });
-
-    // -- FAQ Accordion --
-    document.querySelectorAll('.faq-question').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var item = btn.closest('.faq-item');
-        var answer = item.querySelector('.faq-answer');
-        var isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item.open').forEach(function (i) {
-          i.classList.remove('open');
-          i.querySelector('.faq-answer').style.maxHeight = '0';
-          i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+    document.querySelectorAll('.faq-question').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var item=btn.closest('.faq-item');
+        var answer=item.querySelector('.faq-answer');
+        var isOpen=item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(function(i){
+          i.classList.remove('open');i.querySelector('.faq-answer').style.maxHeight='0';
+          i.querySelector('.faq-question').setAttribute('aria-expanded','false');
         });
-        if (!isOpen) {
-          item.classList.add('open');
-          answer.style.maxHeight = answer.scrollHeight + 'px';
-          btn.setAttribute('aria-expanded', 'true');
-        }
+        if(!isOpen){item.classList.add('open');answer.style.maxHeight=answer.scrollHeight+'px';btn.setAttribute('aria-expanded','true');}
       });
     });
-
-    // -- Chatbot --
-    var FAQ_KB = [
-      {
-        keys: ['plazo', 'denunciar', 'denuncia', 'victima', 'delictivo'],
-        ans: 'Si es una <b>falta</b> (hurto hasta 400\u20ac, lesiones leves): <b>6 meses</b>. Injuria o calumnia: <b>1 a\u00f1o</b>. Resto de delitos (robo, estafa): <b>3 a 20 a\u00f1os</b>.'
-      },
-      {
-        keys: ['orden', 'alejamiento', 'proteccion', 'violencia', 'genero'],
-        ans: 'La <b>orden de alejamiento</b> impide acercarse y comunicarse. Dura <b>1\u20135 a\u00f1os</b>. Solo se revoca con sentencia absolutoria.'
-      },
-      {
-        keys: ['prision', 'condenado', 'condena', 'privacion', 'libertad', 'suspension'],
-        ans: 'Sin antecedentes y pena de <b>hasta 2 a\u00f1os</b>, puedes pedir la <b>suspensi\u00f3n de condena</b>. Tambi\u00e9n cabe multa o trabajos en beneficio de la comunidad.'
-      },
-      {
-        keys: ['alcohol', 'conduccion', 'tasa', 'mg', 'g/l', 'cervezas', 'vino'],
-        ans: 'Delito con <b>m\u00e1s de 0,60 mg/l en aire</b> o <b>1,2 g/l en sangre</b> (aprox. 3\u20134 cervezas o 4,5 vasos de vino para 70\u201390 kg).'
-      },
-      {
-        keys: ['pension', 'alimentos', 'hijos', 'impago', 'ex pareja'],
-        ans: '<b>S\u00ed es un delito</b> si el impago es de <b>2 meses consecutivos</b> o <b>4 alternos</b>.'
-      },
-      {
-        keys: ['carne', 'carnet', 'permiso', 'conducir sin'],
-        ans: 'Conducir sin carn\u00e9 es un <b>delito (art. 384 CP)</b>: prisi\u00f3n 3\u20136 meses, multa 12\u201324 meses, o trabajos 30\u201390 d\u00edas.'
-      },
-      {
-        keys: ['proceso', 'pasos', 'primeros', 'visita', 'cita', 'caso'],
-        ans: 'Concertamos una <b>cita previa</b>, escuchamos tu caso y dise\u00f1amos la estrategia. Luego recibes un <b>presupuesto por fases</b>.'
-      },
-      {
-        keys: ['cobr', 'primera visita', 'precio', 'coste'],
-        ans: 'La primera visita <b>tiene coste</b>, excepto accidentes de tr\u00e1fico.'
-      },
-      {
-        keys: ['presupuesto', 'acepta', 'aceptar'],
-        ans: 'Tras aceptar ejecutamos las acciones legales inform\u00e1ndote en todo momento, y adaptamos la estrategia <b>con tu consentimiento</b>.'
-      },
+    var FAQ_KB=[
+      {keys:['plazo','denunciar','denuncia','victima','delictivo'],ans:'Si es una <b>falta</b> (hurto hasta 400\u20ac, lesiones leves): <b>6 meses</b>. Injuria o calumnia: <b>1 a\u00f1o</b>. Resto de delitos (robo, estafa): <b>3 a 20 a\u00f1os</b>.'},
+      {keys:['orden','alejamiento','proteccion','violencia','genero'],ans:'La <b>orden de alejamiento</b> impide acercarse y comunicarse. Dura <b>1\u20135 a\u00f1os</b>. Solo se revoca con sentencia absolutoria.'},
+      {keys:['prision','condenado','condena','privacion','libertad','suspension'],ans:'Sin antecedentes y pena de <b>hasta 2 a\u00f1os</b>, puedes pedir la <b>suspensi\u00f3n de condena</b>. Tambi\u00e9n cabe multa o trabajos en beneficio de la comunidad.'},
+      {keys:['alcohol','conduccion','tasa','mg','g/l','cervezas','vino'],ans:'Delito con <b>m\u00e1s de 0,60 mg/l en aire</b> o <b>1,2 g/l en sangre</b> (aprox. 3\u20134 cervezas o 4,5 vasos de vino para 70\u201390 kg).'},
+      {keys:['pension','alimentos','hijos','impago','ex pareja'],ans:'<b>S\u00ed es un delito</b> si el impago es de <b>2 meses consecutivos</b> o <b>4 alternos</b>.'},
+      {keys:['carne','carnet','permiso','conducir sin'],ans:'Conducir sin carn\u00e9 es un <b>delito (art. 384 CP)</b>: prisi\u00f3n 3\u20136 meses, multa 12\u201324 meses, o trabajos 30\u201390 d\u00edas.'},
+      {keys:['proceso','pasos','primeros','visita','cita','caso'],ans:'Concertamos una <b>cita previa</b>, escuchamos tu caso y dise\u00f1amos la estrategia. Luego recibes un <b>presupuesto por fases</b>.'},
+      {keys:['cobr','primera visita','precio','coste'],ans:'La primera visita <b>tiene coste</b>, excepto accidentes de tr\u00e1fico.'},
+      {keys:['presupuesto','acepta','aceptar'],ans:'Tras aceptar ejecutamos las acciones legales inform\u00e1ndote en todo momento, y adaptamos la estrategia <b>con tu consentimiento</b>.'},
     ];
-    var chatOpen = false;
-    function normalize(s) { return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
-    function toggleChat() {
-      chatOpen = !chatOpen;
-      document.getElementById('chat-window').classList.toggle('open', chatOpen);
-      document.getElementById('chat-icon-open').style.display = chatOpen ? 'none' : '';
-      document.getElementById('chat-icon-close').style.display = chatOpen ? '' : 'none';
-      document.getElementById('chat-badge').style.display = chatOpen ? 'none' : '';
-      if (chatOpen && document.getElementById('chat-messages').children.length === 0) {
-        setTimeout(function () { addBotMsg('\u00a1Hola! Soy el <b>asistente legal</b>. Usa los accesos r\u00e1pidos o escribe tu pregunta.'); }, 350);
+    var chatOpen=false;
+    function normalize(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+    function toggleChat(){
+      chatOpen=!chatOpen;
+      document.getElementById('chat-window').classList.toggle('open',chatOpen);
+      document.getElementById('chat-icon-open').style.display=chatOpen?'none':'';
+      document.getElementById('chat-icon-close').style.display=chatOpen?'':'none';
+      document.getElementById('chat-badge').style.display=chatOpen?'none':'';
+      if(chatOpen&&document.getElementById('chat-messages').children.length===0){
+        setTimeout(function(){addBotMsg('\u00a1Hola! Soy el <b>asistente legal</b>. Usa los accesos r\u00e1pidos o escribe tu pregunta.');},350);
       }
-      if (chatOpen) document.getElementById('chat-input').focus();
+      if(chatOpen)document.getElementById('chat-input').focus();
     }
-    function addBotMsg(html) { var m = document.getElementById('chat-messages'); var d = document.createElement('div'); d.className = 'chat-msg bot'; d.innerHTML = html; m.appendChild(d); m.scrollTop = m.scrollHeight; }
-    function addUserMsg(t) { var m = document.getElementById('chat-messages'); var d = document.createElement('div'); d.className = 'chat-msg user'; d.textContent = t; m.appendChild(d); m.scrollTop = m.scrollHeight; }
-    function showTyping() { var m = document.getElementById('chat-messages'); var d = document.createElement('div'); d.className = 'chat-typing'; d.id = 'chat-typing'; d.innerHTML = '<span></span><span></span><span></span>'; m.appendChild(d); m.scrollTop = m.scrollHeight; }
-    function removeTyping() { var t = document.getElementById('chat-typing'); if (t) t.remove(); }
-    function getBotAnswer(text) {
-      var q = normalize(text);
-      for (var i = 0; i < FAQ_KB.length; i++) { var e = FAQ_KB[i]; for (var j = 0; j < e.keys.length; j++) { if (q.includes(normalize(e.keys[j]))) return e.ans; } }
-      return 'No encontr\u00e9 respuesta exacta. Puedes <a href="#contacto" style="color:var(--primary);font-weight:600" onclick="toggleChat()">contactarme directamente</a>.';
-    }
-    function sendChat() { var i = document.getElementById('chat-input'); var t = i.value.trim(); if (!t) return; i.value = ''; addUserMsg(t); showTyping(); setTimeout(function () { removeTyping(); addBotMsg(getBotAnswer(t)); }, 900); }
-    function sendSuggestion(btn) { var t = btn.textContent; addUserMsg(t); showTyping(); setTimeout(function () { removeTyping(); addBotMsg(getBotAnswer(t)); }, 900); }
-    document.getElementById('chat-input').addEventListener('keydown', function (e) { if (e.key === 'Enter') sendChat(); });
-
+    function addBotMsg(html){var m=document.getElementById('chat-messages');var d=document.createElement('div');d.className='chat-msg bot';d.innerHTML=html;m.appendChild(d);m.scrollTop=m.scrollHeight;}
+    function addUserMsg(t){var m=document.getElementById('chat-messages');var d=document.createElement('div');d.className='chat-msg user';d.textContent=t;m.appendChild(d);m.scrollTop=m.scrollHeight;}
+    function showTyping(){var m=document.getElementById('chat-messages');var d=document.createElement('div');d.className='chat-typing';d.id='chat-typing';d.innerHTML='<span></span><span></span><span></span>';m.appendChild(d);m.scrollTop=m.scrollHeight;}
+    function removeTyping(){var t=document.getElementById('chat-typing');if(t)t.remove();}
+    function getBotAnswer(text){var q=normalize(text);for(var i=0;i<FAQ_KB.length;i++){var e=FAQ_KB[i];for(var j=0;j<e.keys.length;j++){if(q.includes(normalize(e.keys[j])))return e.ans;}}return 'No encontr\u00e9 respuesta exacta. Puedes <a href="#contacto" style="color:var(--primary);font-weight:600" onclick="toggleChat()">contactarme directamente</a>.';}
+    function sendChat(){var i=document.getElementById('chat-input');var t=i.value.trim();if(!t)return;i.value='';addUserMsg(t);showTyping();setTimeout(function(){removeTyping();addBotMsg(getBotAnswer(t));},900);}
+    function sendSuggestion(btn){var t=btn.textContent;addUserMsg(t);showTyping();setTimeout(function(){removeTyping();addBotMsg(getBotAnswer(t));},900);}
+    document.getElementById('chat-input').addEventListener('keydown',function(e){if(e.key==='Enter')sendChat();});
   </script>
 </body>
-
 </html>

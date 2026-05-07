@@ -166,8 +166,7 @@ Todas las credenciales están almacenadas en n8n — ninguna aparece en el códi
 ## Autor
 
 **Jesús Ignacio Briceño Alarcón**  
-Consultor en Derechos Humanos & Cooperación Internacional  
-Director & Co-fundador — Humanita's Foundation e.V. (Alemania)  
+Consultor de Desarrollo Social e Inteligencia Artifial
 Basado en los Países Bajos · Disponible internacionalmente
 
 ---
